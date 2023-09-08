@@ -35,7 +35,7 @@ class InstagramParser:
         return {
             'title': post.title,
             'caption': post.caption,
-            # 'caption_hashtags': post.caption_hashtags,
+            'caption_hashtags': post.caption_hashtags,
             'media_id': post.mediaid,
             'owner_id': post.owner_id,
             'date_utc': post.date_utc,
@@ -51,6 +51,7 @@ class InstagramParser:
     @staticmethod
     def _load_client(username: str) -> Profile:
         loader = Instaloader()
+        loader.login('devscrape', 'Aa@50989')
         proxies = {
             'http': 'socks5://127.0.0.1:1080',
             'https': 'socks5://127.0.0.1:1080'  # "https://stats.cutitback.com:9999"
