@@ -51,5 +51,10 @@ class InstagramParser:
     @staticmethod
     def _load_client(username: str) -> Profile:
         loader = Instaloader()
+        proxies = {
+            'http': 'socks5://127.0.0.1:1080',
+            'https': 'socks5://127.0.0.1:1080'  # "https://stats.cutitback.com:9999"
+        }
+        loader.context._session.proxies = proxies
         client = Profile.from_username(loader.context, username)
         return client
