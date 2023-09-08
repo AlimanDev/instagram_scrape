@@ -35,6 +35,7 @@ if __name__ == '__main__':
     f.close()
     for profile in profiles:
         profile_name = profile.decode().replace('\n', '')
+        print(f'Profile name: {profile_name}')
         directory_path = get_or_create_path(profile_name)
 
         iterator = InstagramParser(username=profile_name)
