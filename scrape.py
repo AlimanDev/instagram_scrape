@@ -35,7 +35,7 @@ class InstagramParser:
         return {
             'title': post.title,
             'caption': post.caption,
-            'caption_hashtags': post.caption_hashtags,
+            # 'caption_hashtags': post.caption_hashtags,
             'media_id': post.mediaid,
             'owner_id': post.owner_id,
             'date_utc': post.date_utc,
