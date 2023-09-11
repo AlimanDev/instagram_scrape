@@ -1,5 +1,8 @@
 import os
+import time
+
 import requests
+import random
 
 from typing import List
 
@@ -19,8 +22,15 @@ def get_or_create_path(profile_name):
 
 def images_save(images_url: List[str], save_directory: str, post_number: int):
     for photo_number, image_url in enumerate(images_url):
+        sec = round(random.uniform(0.5, 1.9), 2)
+        time.sleep(sec)
         filename = os.path.join(save_directory, f'post_{post_number}_photo_{photo_number + 1}.png')
-        response = requests.get(image_url)
+        proxy_url = 'socks5://127.0.0.1:1080'
+        proxies = {
+            'http': proxy_url,
+            'https': proxy_url,
+        }
+        response = requests.get(image_url, proxies=proxies)
         if response.status_code == 200:
             with open(filename, 'wb') as file:
                 file.write(response.content)
@@ -41,6 +51,8 @@ if __name__ == '__main__':
         iterator = InstagramParser(username=profile_name)
         i_count = 1
         while True:
+            if i_count > 1000:
+                break
             try:
                 data = next(iterator)
                 images = data['images']
