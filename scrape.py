@@ -1,9 +1,11 @@
 from typing import List, Dict
 
-from instaloader import Post, Profile, Instaloader
+from instaloader import Post, Profile, Instaloader, NodeIterator
 
 
 class InstagramParser:
+    client: Profile
+    post_iterator: NodeIterator
 
     def __init__(self):
         self.loader = Instaloader()
