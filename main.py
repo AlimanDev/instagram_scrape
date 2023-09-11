@@ -48,13 +48,13 @@ if __name__ == '__main__':
         profile_name = profile.decode().replace('\n', '')
         print(f'Profile name: {profile_name}')
         directory_path = get_or_create_path(profile_name)
-        iterator = instagram_parser.get_profile(username=profile_name)
+        instagram_parser.get_profile(username=profile_name)
         i_count = 1
         while True:
             if i_count > 1000:
                 break
             try:
-                data = next(iterator)
+                data = next(instagram_parser)
                 images = data['images']
                 images_save(images, directory_path, i_count)
                 i_count += 1
