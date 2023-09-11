@@ -25,12 +25,12 @@ def images_save(images_url: List[str], save_directory: str, post_number: int):
         sec = round(random.uniform(0.5, 1.9), 2)
         time.sleep(sec)
         filename = os.path.join(save_directory, f'post_{post_number}_photo_{photo_number + 1}.png')
-        proxy_url = 'socks5://127.0.0.1:1080'
-        proxies = {
-            'http': proxy_url,
-            'https': proxy_url,
-        }
-        response = requests.get(image_url, proxies=proxies)
+        # proxy_url = 'socks5://127.0.0.1:1080'
+        # proxies = {
+        #     'http': proxy_url,
+        #     'https': proxy_url,
+        # }
+        response = requests.get(image_url)  # , proxies=proxies
         if response.status_code == 200:
             with open(filename, 'wb') as file:
                 file.write(response.content)
