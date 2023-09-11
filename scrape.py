@@ -4,7 +4,13 @@ from instaloader import Post, Profile, Instaloader
 
 
 class InstagramParser:
-    def __init__(self, username: str):
+
+    def __init__(self):
+        self.loader = Instaloader()
+        login = 'prog.rammer99'
+        self.loader.load_session_from_file(login, f'/root/instagram_scrape/session-{login}')
+
+    def get_profile(self, username: str):
         self.client: Profile = self._load_client(username)
         self.post_iterator = self.client.get_posts()
 
@@ -48,8 +54,6 @@ class InstagramParser:
     def _get_node_images(post) -> List[str]:
         return [i.display_url for i in post.get_sidecar_nodes()]
 
-    @staticmethod
-    def _load_client(username: str) -> Profile:
-        loader = Instaloader()
-        client = Profile.from_username(loader.context, username)
+    def _load_client(self, username: str) -> Profile:
+        client = Profile.from_username(self.loader.context, username)
         return client
