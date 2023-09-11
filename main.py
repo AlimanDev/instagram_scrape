@@ -56,7 +56,7 @@ if __name__ == '__main__':
             try:
                 data = next(instagram_parser)
                 images = data['images']
-                images_save(images, directory_path, i_count)
+                # images_save(images, directory_path, i_count)
                 i_count += 1
             except Exception as e:
                 print(f'Raise error message: {e}')
